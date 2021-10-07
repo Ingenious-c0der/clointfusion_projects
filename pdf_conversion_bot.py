@@ -12,17 +12,17 @@ path1="\\".join(path.split("/"))
 
 
 
-
 #going to respective sites for conversion based on the type of input file
 if ext[0]=="doc":
         clipboard.copy(path1)
         cf.browser_activate()
         cf.browser_navigate_h("https://smallpdf.com/word-to-pdf")
         cf.browser_mouse_click_h("CHOOSE FILES")
-        time.sleep(2)
+        time.sleep(1)
         cf.key_write_enter(path1)
-        time.sleep(15)
-        cf.browser_mouse_click_h("DOWNLOAD")
+        cf.browser_wait_until_h("PREVIEW")
+        time.sleep(1)
+        cf.browser_mouse_click_h("Download")
       
 
 
@@ -31,20 +31,21 @@ elif ext[0]=="png":
         cf.browser_activate()
         cf.browser_navigate_h("https://png2pdf.com/")
         cf.browser_mouse_click_h("UPLOAD FILES")
-        time.sleep(2)
+        time.sleep(1)
         cf.key_write_enter(path1)
-        time.sleep(13)
+        cf.browser_wait_until_h("DOWNLOAD")
+        time.sleep(1)
         cf.browser_mouse_click_h("DOWNLOAD")
-    
 
 elif ext[0]=="jpg":
         clipboard.copy(path1)
         cf.browser_activate()
         cf.browser_navigate_h("https://smallpdf.com/jpg-to-pdf")
         cf.browser_mouse_click_h("CHOOSE FILES")
-        time.sleep(2)
+        time.sleep(1)
         cf.key_write_enter(path1)
-        time.sleep(6)
+        cf.browser_wait_until_h("CONVERT")
         cf.browser_mouse_click_h("CONVERT")
-        time.sleep(10)
+        cf.browser_wait_until_h("PREVIEW")
         cf.browser_mouse_click_h("DOWNLOAD")
+
