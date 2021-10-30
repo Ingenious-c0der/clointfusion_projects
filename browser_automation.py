@@ -77,12 +77,12 @@ class Browser:
 info = Browser.get_user_info()
 session = Browser("Chrome","www.flipkart.com")
 time.sleep(1)
-session.click_on_image(r"C:\Users\sagar\Desktop\clointfusion_work\images\login_button.png")
+session.click_on_image(r"path")
 session.enter_info(info[0])
-session.click_on_image(r"C:\Users\sagar\Desktop\clointfusion_work\images\enter_password.png")
+session.click_on_image(r"path")
 session.enter_info(info[1])
-session.add_item_to_cart(r"boAt Airdopes 131 Bluetooth Headset",r"C:\Users\sagar\Desktop\clointfusion_work\images\boat131.png")
-session.add_item_to_cart(r"boAt Airdopes 402 Bluetooth Headset",r"C:\Users\sagar\Desktop\clointfusion_work\images\boat402test.png")
+session.add_item_to_cart(r"boAt Airdopes 131 Bluetooth Headset",r"path")
+session.add_item_to_cart(r"boAt Airdopes 402 Bluetooth Headset",r"path")
 session.place_order()
 
 time.sleep(6) #doesn't have any use.Just to have the page stall at a point before the chrome tab is closed
