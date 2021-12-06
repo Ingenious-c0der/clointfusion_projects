@@ -1,5 +1,5 @@
 from google_sheets import GoogleSheets
-from social_media_apps import Instagram, Twitter, Facebook
+from social_media_apps import Instagram, LinkedIn, Twitter, Facebook
 import os
 from dotenv import load_dotenv, find_dotenv
 from loguru import logger
@@ -9,6 +9,7 @@ def poster(gsheet_data):
     facebook_list = []
     twitter_list = []
     instagram_list = []
+    LinkedIn_list = []
 
     for data in gsheet_data:
         caption = data['Post Message']
@@ -20,6 +21,8 @@ def poster(gsheet_data):
             twitter_list.append((caption,image_link))
         if data["Instagram"]=="Yes":
             instagram_list.append((caption,image_path,image_link))
+        if data["LinkedIn"]=="Yes":
+            LinkedIn_list.append((caption,image_link))
         
     fb = Facebook(os.getenv("FACEBOOK_EMAIL_ID"),os.getenv("FACEBOOK_PASSWORD"))
     fb.login()
@@ -37,6 +40,12 @@ def poster(gsheet_data):
     ig = Instagram(os.getenv("INSTAGRAM_USERNAME"),os.getenv("INSTAGRAM_PASSWORD"))
     for post in instagram_list:
         ig.upload_content(post[1],post[0],post[2])
+    
+    li = LinkedIn(os.getenv("LINKEDIN_USERNAME"),os.getenv("LINKEDIN_PASSWORD"))
+    li.login()
+    for post in LinkedIn_list:
+        li.post(post[0],post[1])
+    li.close()
     
 
 
